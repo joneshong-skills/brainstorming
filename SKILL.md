@@ -5,8 +5,8 @@ description: >-
   "explore approaches", "think through options", "what's the best way to", "help me decide",
   "compare approaches", "腦力激盪", "討論設計", "想想看怎麼做", "幫我想一下",
   mentions ideation, design exploration, or discusses evaluating approaches before implementation.
-version: 0.1.0
-tools: Read, Glob, Grep, Write
+version: 0.2.0
+tools: Read, Glob, Grep, Write, sandbox_execute
 argument-hint: "<idea, feature, or problem to explore>"
 ---
 
@@ -33,6 +33,8 @@ Goal: Build a shared mental model of the problem space.
 1. **Check project context.** Scan for existing docs, specs, or related code:
    - `docs/plans/`, `specs/`, `.specify/`, `CLAUDE.md`, `README.md`
    - Related source files if the idea extends existing functionality
+
+   > **Sandbox acceleration**: When loading context from 3+ project files, batch all reads into a single `sandbox_execute` call and return structured summaries, saving tokens before the dialogue begins.
 
 2. **Ask one question at a time.** Never batch multiple questions. Wait for the answer
    before asking the next. This keeps the conversation focused and reduces cognitive load.
@@ -158,6 +160,15 @@ After brainstorming converges on a design:
 
 Mention these transitions naturally when the brainstorming reaches a natural endpoint:
 "Now that we have a solid design, want me to turn this into a formal spec with `/spec-kit`?"
+
+## Sandbox Optimization
+
+Batch operations benefit from `sandbox_execute`:
+
+- **Batch context loading**: Read multiple project files (specs, READMEs, source files) in one sandbox call, returning structured summaries instead of raw content
+- Saves context tokens when handling 3+ files simultaneously before the dialogue begins
+
+Principle: **Deterministic batch work → sandbox; reasoning/presentation → LLM.**
 
 ## Continuous Improvement
 
