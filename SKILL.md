@@ -1,10 +1,6 @@
 ---
 name: brainstorming
-description: >-
-  This skill should be used when the user asks to "brainstorm ideas", "design a feature",
-  "explore approaches", "think through options", "what's the best way to", "help me decide",
-  "compare approaches", "腦力激盪", "討論設計", "想想看怎麼做", "幫我想一下",
-  mentions ideation, design exploration, or discusses evaluating approaches before implementation.
+description: "brainstorming, approaches, brainstorm, ideas, design, feature, explore, 腦力激盪, 討論設計, 想想看怎麼做, 幫我想一下"
 version: 0.2.0
 tools: Read, Glob, Grep, Write, sandbox_execute
 argument-hint: "<idea, feature, or problem to explore>"
